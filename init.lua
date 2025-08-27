@@ -700,6 +700,26 @@ require('lazy').setup({
         },
         html = {},
         cssls = {},
+        ts_ls = {},
+        pyright = {
+          settings = {
+            python = {
+              analysis = {
+                ignore = { '*' },
+              },
+            },
+          },
+        },
+        ruff = {
+          on_attach = function(client)
+            client.server_capabilities.hoverProvider = false
+          end,
+          init_options = {
+            settings = {
+              args = {},
+            },
+          },
+        },
       }
 
       -- Ensure the servers and tools above are installed
@@ -777,6 +797,11 @@ require('lazy').setup({
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
         html = { 'prettier' },
         css = { 'prettier' },
+        javascript = { 'prettier' },
+        typescript = { 'prettier' },
+        javascriptreact = { 'prettier' },
+        typescriptreact = { 'prettier' },
+        python = { 'black' },
       },
     },
   },
@@ -958,7 +983,7 @@ require('lazy').setup({
         --  the list of additional_vim_regex_highlighting and disabled languages for indent.
         additional_vim_regex_highlighting = { 'ruby' },
       },
-      indent = { enable = true, disable = { 'ruby', 'html', 'css' } },
+      indent = { enable = false, disable = { 'ruby', 'html', 'css' } },
     },
     -- There are additional nvim-treesitter modules that you can use to interact
     -- with nvim-treesitter. You should go explore a few and see what interests you:
@@ -981,7 +1006,7 @@ require('lazy').setup({
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',
-  -- require 'kickstart.plugins.neo-tree',
+  require 'kickstart.plugins.neo-tree',
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
